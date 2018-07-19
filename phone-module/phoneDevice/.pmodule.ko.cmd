@@ -1,0 +1,1 @@
+cmd_/root/kernel/project/phone-module/phoneDevice/pmodule.ko := arm-linux-gnueabihf-ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /root/kernel/project/phone-module/phoneDevice/pmodule.ko /root/kernel/project/phone-module/phoneDevice/pmodule.o /root/kernel/project/phone-module/phoneDevice/pmodule.mod.o ;  true

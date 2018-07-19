@@ -1,0 +1,3 @@
+[phone_module.so]
+: phone_module_init START_MONITOR
+: phone_module RECEIVE_DATA

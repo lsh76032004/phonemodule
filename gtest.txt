@@ -1,0 +1,59 @@
+Install
+$ wget https://github.com/google/googletest/archive/release-1.8.0.tar.gz
+$ tar xvf release-1.8.0.tar.gz
+$ mv googletest-release-1.8.0 googletest
+$ cd googletestgoogletestscripts/
+$ python fusegtestfiles.py gtest
+$ mv gtest/gtest ~
+$ cd ~/gtest
+$ g++ -c gtest-all.cc -I../
+$ ar rcv gtest.a gtest-all.o
+
+
+
+Test Case Example
+
+// test.cpp
+#include <gtest/gtest.h>
+#include <stdio.h>
+ 
+/*Test Target Function*/
+char score_s(int value){
+    if(value>=65 && value<=70){
+        return 'A';
+    }
+    else if(value>=50 && value<65){
+        return 'B';
+    }
+    else if(value>=30 && value<50){
+        return 'C';
+    }
+    else if(value>=0 && value<30){
+        return 'D';
+    }
+    else{
+        return 'F';
+    }
+}
+ 
+TEST(SampleTest, PlusTest)
+{
+    EXPECT_EQ('F', score_s(-100));
+    EXPECT_EQ('D', score_s(20));
+    EXPECT_EQ('C', score_s(35));
+    EXPECT_EQ('B', score_s(60));
+    EXPECT_EQ('A', score_s(59)); /*ERROR TEST CASE*/
+}
+ 
+int main(int argc, char** argv)
+{
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
+
+
+Build & RUN
+$ g++ test.cpp gtest.a -I../ -lpthread -o unittest
+$ ./unittest
+
+
